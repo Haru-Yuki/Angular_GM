@@ -1,0 +1,26 @@
+.postAdd {
+    &-form {
+      background-color: #fff;
+      border-radius: 5px;
+      min-height: 700px;
+      margin-top: 50px;
+    }
+  
+    &-header {
+      font-weight: bold;
+      padding: 20px 0;
+    }
+  
+    &-content {
+      padding: 0 20px;
+    }
+  
+    &-buttons {
+      float: right;
+      margin-right: 20px;
+    }
+}
+  
+.button {
+margin-right: 15px;
+}

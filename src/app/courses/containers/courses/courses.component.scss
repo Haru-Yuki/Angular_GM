@@ -1,0 +1,28 @@
+.search {
+  margin-top: 50px;
+}
+
+.postSearch {
+ margin: 0;
+}
+
+.addCourseButton {
+ width: 100%;
+ color: #fff;
+}
+
+.post {
+ background-color: #fff;
+ border-radius: 5px;
+ margin-top: 20px;
+ padding: 20px;
+ position: relative;
+
+ &-loadMore {
+   text-transform: uppercase;
+
+   &-wrapper {
+     margin-left: 45%;
+   }
+ }
+}

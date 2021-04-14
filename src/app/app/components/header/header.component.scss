@@ -1,0 +1,47 @@
+.header {
+    background-color: #414453;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  
+    &-title {
+      width: 75%;
+      text-transform: uppercase;
+      font-size: 36px;
+      color: #fff;
+      padding: 27px 0 0 15px;
+    }
+  
+    &-navigation {
+      width: 250px;
+  
+      &-items {
+        padding: 33px 50px 0 0;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        justify-content: space-between;
+      }
+      
+      &-item {
+        &-link {
+          color: #fff;
+          font-size: 22px;
+          text-decoration: none;
+  
+          &--active {
+            text-decoration: underline;
+          }
+          
+          &:hover {
+            text-decoration: underline;
+          }
+  
+          &:active {
+            color: #d3d3d3;
+          }
+        }
+      }
+    }
+  }

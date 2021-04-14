@@ -1,1 +1,25 @@
-<p>courses works!</p>
+<div class="grid-x grid-padding-x">
+  <div class="medium-3 cell search">
+    <div class="input-group">
+      <div class="input-group-button">
+        <input type="submit" class="button" value="Search">
+      </div>
+      <input type="search" class="postSearch" placeholder="Text for search" />
+    </div>    
+  </div>
+  <div class="medium-1 cell medium-offset-11 showMore">
+    <a [routerLink]="['./add']" class="success button addCourseButton"><i class="fas fa-plus"></i>  Add Course</a>
+  </div>
+  <div class="medium-12 cell post-wrapper">
+    <app-course-post
+      *ngFor="let course of courses"
+      [course]="course"
+      (deleted)="handleDelete()"
+    ></app-course-post>
+    <div class="post">
+      <div class="post-loadMore-wrapper">
+        <a href="#" class="post-loadMore">Load more</a>
+      </div>
+    </div>
+  </div>
+</div>

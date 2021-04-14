@@ -1,0 +1,40 @@
+.post {
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 20px;
+  position: relative;
+
+  &-header {
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  &-info {
+    float: right;
+    margin: 15px 20% 0 0;
+  }
+
+  &-duration,
+  &-date {
+    padding: 10px;
+    font-size: 12px;
+    color: #686868;
+  }
+  
+  &-text {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  &-button {
+    width: 90px;
+    margin-right: 10px;
+  }
+
+  &-buttons {
+    position: absolute;
+    right: 45px;
+    top: 70px;
+  }
+}
