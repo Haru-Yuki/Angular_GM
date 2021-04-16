@@ -27,11 +27,11 @@ describe('CoursesComponent', () => {
 
   describe('handleDelete', () => {
     beforeEach(() => {
-      component.handleDelete();
+      component.handleDelete(1);
     });
     
     it('should show console log', () => {
-      expect(console.log).toHaveBeenCalledWith('Deleting course...');
+      expect(console.log).toHaveBeenCalledWith('Deleting course with id: ' + 1);
     });
   });
 
