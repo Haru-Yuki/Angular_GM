@@ -12,8 +12,7 @@ export class CoursePostComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   handleDelete() {
     this.deleted.emit(this.course.id);

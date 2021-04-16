@@ -17,9 +17,42 @@ describe('CoursesComponent', () => {
     fixture = TestBed.createComponent(CoursesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    
+    spyOn(console, 'log');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('handleDelete', () => {
+    beforeEach(() => {
+      component.handleDelete();
+    });
+    
+    it('should show console log', () => {
+      expect(console.log).toHaveBeenCalledWith('Deleting course...');
+    });
+  });
+
+  describe('handleSearch', () => {
+    beforeEach(() => {
+      component.searchControl.setValue('Hello World!');
+      component.handleSearch();
+    });
+    
+    it('should show console log with search value', () => {
+      expect(console.log).toHaveBeenCalledWith('Hello World!');
+    });
+  });
+
+  describe('handleLoadMore', () => {
+    beforeEach(() => {
+      component.handleLoadMore();
+    });
+    
+    it('should show console log', () => {
+      expect(console.log).toHaveBeenCalledWith('Loading more courses...');
+    });
   });
 });

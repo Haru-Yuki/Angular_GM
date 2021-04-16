@@ -5,8 +5,7 @@ import { CourseComponent } from './containers/course/course.component';
 import { CoursesComponent } from './containers/courses/courses.component';
 import { CoursesRoutingModule } from './courses.routing-module';
 import { CoursePostComponent } from './components/course-post/course-post.component';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,8 @@ import { CoursePostComponent } from './components/course-post/course-post.compon
   ],
   imports: [
     CommonModule,
-    CoursesRoutingModule
+    CoursesRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class CoursesModule { }
