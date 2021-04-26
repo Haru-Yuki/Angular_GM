@@ -17,9 +17,41 @@ describe('CoursesComponent', () => {
     fixture = TestBed.createComponent(CoursesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    spyOn(console, 'log');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('handleDelete', () => {
+    beforeEach(() => {
+      component.handleDelete(1);
+    });
+
+    it('should show console log', () => {
+      expect(console.log).toHaveBeenCalledWith('Deleting course with id: ' + 1);
+    });
+  });
+
+  describe('handleEdit', () => {
+    beforeEach(() => {
+      component.handleEdit(1);
+    });
+
+    it('should show console log', () => {
+      expect(console.log).toHaveBeenCalledWith('Editing course with id: ' + 1);
+    });
+  });
+
+  describe('handleLoadMore', () => {
+    beforeEach(() => {
+      component.handleLoadMore();
+    });
+
+    it('should show console log', () => {
+      expect(console.log).toHaveBeenCalledWith('Loading more courses...');
+    });
   });
 });

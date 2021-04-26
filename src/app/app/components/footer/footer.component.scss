@@ -1,0 +1,16 @@
+@import "../../../../vars";
+
+.footer {
+    width: 100%;
+    background-color: $brightGray;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+  
+    &-copyright {
+      float: right;
+      font-size: 20px;
+      color: #fff;
+      padding: 10px 30px 0 0;
+    }
+  }
