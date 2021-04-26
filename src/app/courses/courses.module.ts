@@ -6,13 +6,15 @@ import { CoursesComponent } from './containers/courses/courses.component';
 import { CoursesRoutingModule } from './courses.routing-module';
 import { CoursePostComponent } from './components/course-post/course-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './containers/search/search.component';
 
 @NgModule({
   declarations: [
     CourseFormComponent,
     CourseComponent,
     CoursesComponent,
-    CoursePostComponent
+    CoursePostComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

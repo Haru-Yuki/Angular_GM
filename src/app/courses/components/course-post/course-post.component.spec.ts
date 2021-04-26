@@ -45,4 +45,17 @@ describe('CoursePostComponent', () => {
         expect(component.deleted.emit).toHaveBeenCalled();
     });
   });
+
+  describe('handleEdit', () => {
+    beforeEach(() => {
+        component.course = courseMock;
+        spyOn(component.edited, 'emit');
+
+        component.handleEdit();
+    });
+
+    it('should emit course id', () => {
+        expect(component.edited.emit).toHaveBeenCalled();
+    });
+  });
 });

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../../../core/models/course';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-courses',
@@ -10,13 +9,10 @@ import { FormControl } from '@angular/forms';
 export class CoursesComponent implements OnInit {
 
   courses: Array<Course> = [];
-  searchControl: FormControl;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.searchControl = new FormControl();
-
     this.mockCoursedData();
   }
 
@@ -38,10 +34,6 @@ export class CoursesComponent implements OnInit {
 
   handleEdit(id: number): void {
     console.log('Editing course with id: ' + id);
-  }
-
-  handleSearch(): void {
-    console.log(this.searchControl.value);
   }
 
   handleLoadMore(): void {

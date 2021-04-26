@@ -45,17 +45,6 @@ describe('CoursesComponent', () => {
     });
   });
 
-  describe('handleSearch', () => {
-    beforeEach(() => {
-      component.searchControl.setValue('Hello World!');
-      component.handleSearch();
-    });
-
-    it('should show console log with search value', () => {
-      expect(console.log).toHaveBeenCalledWith('Hello World!');
-    });
-  });
-
   describe('handleLoadMore', () => {
     beforeEach(() => {
       component.handleLoadMore();

@@ -10,7 +10,7 @@
       {{ course.description }}
     </p>
     <div class="post-buttons">
-      <button class="post-button button primary"><i class="far fa-edit"></i>  Edit</button>
+      <button (click)="handleEdit()" class="post-button button primary"><i class="far fa-edit"></i>  Edit</button>
       <button (click)="handleDelete()" class="post-button button alert"><i class="fas fa-trash"></i>  Delete</button>
     </div>
 </div>

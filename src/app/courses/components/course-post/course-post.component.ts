@@ -9,6 +9,7 @@ import { Course } from '../../../core/models/course';
 export class CoursePostComponent implements OnInit {
   @Input() course: Course;
   @Output() deleted: EventEmitter<number> = new EventEmitter();
+  @Output() edited: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
@@ -16,5 +17,9 @@ export class CoursePostComponent implements OnInit {
 
   handleDelete(): void {
     this.deleted.emit(this.course.id);
+  }
+
+  handleEdit(): void {
+    this.edited.emit(this.course.id);
   }
 }
