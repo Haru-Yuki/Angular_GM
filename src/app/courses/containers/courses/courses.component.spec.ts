@@ -35,6 +35,16 @@ describe('CoursesComponent', () => {
     });
   });
 
+  describe('handleEdit', () => {
+    beforeEach(() => {
+      component.handleEdit(1);
+    });
+
+    it('should show console log', () => {
+      expect(console.log).toHaveBeenCalledWith('Editing course with id: ' + 1);
+    });
+  });
+
   describe('handleSearch', () => {
     beforeEach(() => {
       component.searchControl.setValue('Hello World!');

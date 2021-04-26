@@ -36,6 +36,10 @@ export class CoursesComponent implements OnInit {
     console.log('Deleting course with id: ' + id);
   }
 
+  handleEdit(id: number): void {
+    console.log('Editing course with id: ' + id);
+  }
+
   handleSearch(): void {
     console.log(this.searchControl.value);
   }

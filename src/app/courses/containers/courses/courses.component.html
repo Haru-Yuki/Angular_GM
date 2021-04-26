@@ -15,6 +15,7 @@
       *ngFor="let course of courses;"
       [course]="course"
       (deleted)="handleDelete($event)"
+      (edited)="handleEdit($event)"
     ></app-course-post>
     <div class="post">
       <div class="post-loadMore-wrapper">
