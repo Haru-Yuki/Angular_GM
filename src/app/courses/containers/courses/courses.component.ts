@@ -19,15 +19,15 @@ export class CoursesComponent implements OnInit {
 
     this.mockCoursedData();
   }
-  
+
   mockCoursedData(): void {
-    for (let i: number = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       this.courses.push({
         id: i,
         title: 'Video Course 1. Name tag',
         creationDate: '08/28/2020',
         duration: '1h 28min',
-        description: "Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester."
+        description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
       });
     }
   }

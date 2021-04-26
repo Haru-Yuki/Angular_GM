@@ -14,7 +14,7 @@ export class CoursePostComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleDelete() {
+  handleDelete(): void {
     this.deleted.emit(this.course.id);
   }
 }

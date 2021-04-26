@@ -17,7 +17,7 @@ describe('CoursesComponent', () => {
     fixture = TestBed.createComponent(CoursesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    
+
     spyOn(console, 'log');
   });
 
@@ -29,7 +29,7 @@ describe('CoursesComponent', () => {
     beforeEach(() => {
       component.handleDelete(1);
     });
-    
+
     it('should show console log', () => {
       expect(console.log).toHaveBeenCalledWith('Deleting course with id: ' + 1);
     });
@@ -40,7 +40,7 @@ describe('CoursesComponent', () => {
       component.searchControl.setValue('Hello World!');
       component.handleSearch();
     });
-    
+
     it('should show console log with search value', () => {
       expect(console.log).toHaveBeenCalledWith('Hello World!');
     });
@@ -50,7 +50,7 @@ describe('CoursesComponent', () => {
     beforeEach(() => {
       component.handleLoadMore();
     });
-    
+
     it('should show console log', () => {
       expect(console.log).toHaveBeenCalledWith('Loading more courses...');
     });

@@ -28,7 +28,7 @@ describe('HeaderComponent', () => {
       spyOn(console, 'log');
       component.handleLogIn();
     });
-    
+
     it('should show console log', () => {
       expect(console.log).toHaveBeenCalledWith('Logged in :)');
     });
