@@ -58,7 +58,7 @@
     }
   },
   "lint-staged": {
-    "*{ts}": [
+    "*ts": [
       "ng lint"
     ]
   }

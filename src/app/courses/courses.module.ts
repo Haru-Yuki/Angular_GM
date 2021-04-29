@@ -7,6 +7,7 @@ import { CoursesRoutingModule } from './courses.routing-module';
 import { CoursePostComponent } from './components/course-post/course-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './containers/search/search.component';
+import { FreshPostDirective } from './directives/fresh-post.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SearchComponent } from './containers/search/search.component';
     CourseComponent,
     CoursesComponent,
     CoursePostComponent,
-    SearchComponent
+    SearchComponent,
+    FreshPostDirective
   ],
   imports: [
     CommonModule,

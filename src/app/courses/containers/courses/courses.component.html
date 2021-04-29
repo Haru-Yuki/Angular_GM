@@ -10,7 +10,8 @@
       (deleted)="handleDelete($event)"
       (edited)="handleEdit($event)"
     ></app-course-post>
-    <div class="post">
+    <div *ngIf="!isCourseFind" class="post-noCourses">Courses not found</div>
+    <div *ngIf="isCourseFind" class="post">
       <div class="post-loadMore-wrapper">
         <a class="post-loadMore" (click)="handleLoadMore()">Load more</a>
       </div>
