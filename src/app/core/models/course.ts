@@ -3,6 +3,6 @@ export interface Course {
     topRated?: boolean;
     title: string;
     creationDate: string;
-    duration: string;
+    duration: number;
     description: string;
 }

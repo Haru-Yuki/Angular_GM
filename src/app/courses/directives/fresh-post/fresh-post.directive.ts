@@ -20,7 +20,7 @@ export class FreshPostDirective implements OnInit {
       this.element.nativeElement.style.border = '3px solid green';
     }
 
-    if (this.dateDifference < 0) {
+    if (this.dateDifference <= 0) {
       this.element.nativeElement.style.border = '3px solid skyblue';
     }
   }
