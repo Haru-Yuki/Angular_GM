@@ -1,5 +1,11 @@
+.courses {
+  &-wrap {
+    justify-content: space-between;
+  }
+}
+
 .showMore {
-  padding-right: 60px;
+  padding: 20px 65px 0;
 }
 
 .addCourseButton {
