@@ -26,12 +26,20 @@ describe('SearchComponent', () => {
   describe('handleSearch', () => {
     beforeEach(() => {
       spyOn(component.searchCourseValue, 'emit');
-      component.searchControl.setValue('Hello World!');
-      component.handleSearch();
     });
 
     it('should emit search value', () => {
+      component.searchControl.setValue('Hello World!');
+      component.handleSearch();
+
       expect(component.searchCourseValue.emit).toHaveBeenCalledWith('Hello World!');
+    });
+
+    it('should emit empty string if no value in input', () => {
+      component.searchControl.setValue(null);
+      component.handleSearch();
+
+      expect(component.searchCourseValue.emit).toHaveBeenCalledWith('');
     });
   });
 });

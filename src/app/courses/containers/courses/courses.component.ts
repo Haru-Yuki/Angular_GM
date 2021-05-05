@@ -1,6 +1,5 @@
-import { Component, OnInit, DoCheck, Input } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Course } from '../../../core/models/course';
-import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-courses',
@@ -20,11 +19,7 @@ export class CoursesComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    if (this.courses && this.courses.length === 0 || !this.isCourseFindSearch) {
-      this.isCourseFind = false;
-    } else {
-      this.isCourseFind = true;
-    }
+    this.isCourseFind = !(this.courses && this.courses.length === 0 || !this.isCourseFindSearch);
   }
 
   mockCoursesData(): void {
@@ -74,10 +69,6 @@ export class CoursesComponent implements OnInit, DoCheck {
   handleSearch(value: string): void {
     this.searchCourseValue = value;
 
-    if (this.courses.filter(courses => courses.title.includes(value)).length === 0) {
-      this.isCourseFindSearch = false;
-    } else {
-      this.isCourseFindSearch = true;
-    }
+    this.isCourseFindSearch = this.courses.filter(courses => courses.title.includes(value)).length !== 0;
   }
 }
