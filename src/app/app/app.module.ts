@@ -7,6 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import {LoginModule} from '../login/login.module';
 
 
 @NgModule({
@@ -17,10 +18,11 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
     LogoComponent,
     BreadcrumbsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        LoginModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,7 +9,8 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [ HeaderComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
   });
@@ -21,16 +23,5 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('handleLogIn', () => {
-    beforeEach(() => {
-      spyOn(console, 'log');
-      component.handleLogIn();
-    });
-
-    it('should show console log', () => {
-      expect(console.log).toHaveBeenCalledWith('Logged in :)');
-    });
   });
 });

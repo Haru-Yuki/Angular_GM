@@ -1,0 +1,33 @@
+@import "src/_vars.scss";
+
+.login {
+  &-wrapper {
+    position: absolute;
+    margin: 75px 410px 0;
+    padding: 30px;
+    width: 450px;
+    height: 300px;
+    background-color: $white;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba($black, 0.05);
+  }
+
+  &-header {
+    font-weight: bold;
+  }
+
+  &-help-text {
+    margin-top: -4.7rem;
+    float: right;
+  }
+
+  &-link {
+    display: inline-block;
+    text-decoration: underline;
+    margin-top: 10px;
+  }
+
+  &-button {
+    float: right;
+  }
+}

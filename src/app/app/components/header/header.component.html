@@ -1,15 +1,21 @@
 <div class="grid-x">
     <header class="cell header">
         <app-logo></app-logo>
-        <div class="header-title">Video course</div>
+        <div class="header-title">
+          <a href="./" style="color: #FFFFFF">Video course</a>
+        </div>
         <nav class="header-navigation">
             <ul class="header-navigation-items">
-                <li class="header-navigation-item">
-                    <a (click)="handleLogIn()" routerLinkActive="header-navigation-item-link--active" class="header-navigation-item-link">User login</a>
+                <li *appAuthenticated="isAuthenticated" class="header-navigation-item">
+                    <a *ngIf="router.url !== '/login'" href="/login" routerLinkActive="header-navigation-item-link--active" class="header-navigation-item-link">User login</a>
                 </li>
-                <li class="header-navigation-item">
-                    <a routerLinkActive="header-navigation-item-link--active" class="header-navigation-item-link">Log out</a>
-                </li> 
+                <li *appAuthenticated="!isAuthenticated" class="header-navigation-item">
+                  <span class="header-navigation-item-user">Welcome,</span>
+                  <span class="header-navigation-item-user">{{loggedInEmail}}</span>
+                </li>
+                <li *appAuthenticated="!isAuthenticated" class="header-navigation-item">
+                    <a (click)="handleLogout()" routerLinkActive="header-navigation-item-link--active" class="header-navigation-item-link">Log out</a>
+                </li>
             </ul>
         </nav>
     </header>

@@ -1,21 +1,23 @@
+@import "src/_vars.scss";
+
 .header {
-    background-color: #414453;
+    background-color: $brightGray;
     height: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  
+
     &-title {
       width: 75%;
       text-transform: uppercase;
       font-size: 36px;
-      color: #fff;
+      color: $white;
       padding: 27px 0 0 15px;
     }
-  
+
     &-navigation {
       width: 350px;
-  
+
       &-items {
         padding: 33px 50px 0 0;
         display: flex;
@@ -23,25 +25,37 @@
         list-style: none;
         justify-content: space-between;
       }
-      
+
       &-item {
         &-link {
-          color: #fff;
+          color: $white;
           font-size: 22px;
           text-decoration: none;
-  
+
           &--active {
             text-decoration: underline;
           }
-          
+
           &:hover {
             text-decoration: underline;
             cursor: pointer;
           }
-  
+
           &:active {
-            color: #d3d3d3;
+            color: $alto;
           }
+        }
+
+        &-user {
+          display: block;
+          width: 130px;
+          color: $white;
+          font-size: 16px;
+          text-decoration: none;
+          line-height: 1.4;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
       }
     }
