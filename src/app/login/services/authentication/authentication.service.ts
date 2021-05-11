@@ -16,14 +16,10 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    const email = localStorage.getItem('email');
+    localStorage.removeItem('email');
+    localStorage.removeItem('token');
 
-    if (localStorage.getItem('email') || localStorage.getItem('token')) {
-      localStorage.removeItem('email');
-      localStorage.removeItem('token');
-
-      console.log('Logged out ' + email);
-    }
+    console.log('Logged out ' + localStorage.getItem('email'));
   }
 
   isAuthenticated(): boolean {

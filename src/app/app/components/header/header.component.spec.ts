@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
 import {RouterTestingModule} from '@angular/router/testing';
+import {AuthenticationService} from '../../../login/services/authentication/authentication.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -23,5 +24,17 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('handleLogout', () => {
+    beforeEach(() => {
+      spyOn(component['authenticationService'], 'logout');
+
+      component.handleLogout();
+    });
+
+    it('should call logout from auth service', () => {
+      expect(component['authenticationService'].logout).toHaveBeenCalled();
+    });
   });
 });

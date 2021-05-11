@@ -36,20 +36,38 @@ describe('CoursesComponent', () => {
   });
 
   describe('handleDelete', () => {
+    const id = 1;
+
     beforeEach(() => {
-      component.handleDelete(1);
+      spyOn(component['coursesService'], 'deleteCourse');
+    });
+
+    it('should call deleteCourse with id from service if user confirms', () => {
+      spyOn(window, 'confirm').and.returnValue(true);
+      component.handleDelete(id);
+
+      expect(component['coursesService'].deleteCourse).toHaveBeenCalledWith(id);
+    });
+
+    it('should not call deleteCourse with id from service if user do not confirms', () => {
+      spyOn(window, 'confirm').and.returnValue(false);
+      component.handleDelete(id);
+
+      expect(component['coursesService'].deleteCourse).not.toHaveBeenCalled();
     });
   });
 
   describe('handleEdit', () => {
     beforeEach(() => {
       component.isCourseFindSearch = false;
+      spyOn(component['coursesService'], 'editCourse');
+
       component.ngDoCheck();
       component.handleEdit(1);
     });
 
-    it('should show console log', () => {
-      expect(console.log).toHaveBeenCalledWith('Editing course with id: ' + 1);
+    it('should call editCourse from service', () => {
+      expect(component['coursesService'].editCourse).toHaveBeenCalled();
     });
   });
 
@@ -65,9 +83,6 @@ describe('CoursesComponent', () => {
 
   describe('handleSearch', () => {
     const value = 'Search';
-
-    beforeEach(() => {
-    });
 
     it('should set isCourseFindSearch to true if course is not found', () => {
       courseMock.title = value;

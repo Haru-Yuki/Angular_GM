@@ -25,4 +25,16 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('handleLogin', () => {
+    beforeEach(() => {
+      spyOn(component['authenticationService'], 'login');
+    });
+
+    it('should call login from auth service', () => {
+        component.handleLogin();
+
+        expect(component['authenticationService'].login).toHaveBeenCalled();
+    });
+  });
 });
