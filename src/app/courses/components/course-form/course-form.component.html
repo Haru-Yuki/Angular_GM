@@ -1,35 +1,39 @@
-<form action="#" method="POST" class="postAdd-form">
+<form action="#" method="POST" class="postAdd-form" [formGroup]="form">
     <div class="grid-x postAdd-content">
         <h3 class="postAdd-header">New Course</h3>
         <div class="medium-12 cell">
         <label>Title:
-            <input type="text" placeholder="Some title..." required="required" />
+            <input formControlName="title" type="text" placeholder="Some title..." required="required" />
+            <span *ngIf="isTitleLengthValid" class="error"><i class="fas fa-exclamation-triangle"></i>Title is out of max length! (Maximum 50)</span>
+            <span class="postAdd-validationInfo">Symbols used: {{ this.form.get('title').value.length }} / 50</span>
         </label>
         <p class="help-text">*required</p>
 
         <label>
             Description:
-            <textarea placeholder="Description..." required="required"></textarea>
+            <textarea formControlName="description" placeholder="Description..." required="required"></textarea>
+            <span *ngIf="isDescriptionLengthValid" class="error"><i class="fas fa-exclamation-triangle"></i>Description is out of max length! (Maximum 50)</span>
+            <span class="postAdd-validationInfo">Symbols used: {{ this.form.get('description').value.length }} / 50</span>
         </label>
         <p class="help-text">*required</p>
         </div>
         <div class="medium-2 cell">
         <label>
             Duration:
-            <input type="number" value="0" required="required" />
+            <input formControlName="duration" type="number" value="0" min="1" max="600" required="required" />
+            <span *ngIf="isDurationRangeValid" class="error"><i class="fas fa-exclamation-triangle"></i>Duration is out of range! (1-600)</span>
         </label>
         <p class="help-text">*required</p>
-
         
         <label>
             Date:
-            <input type="date" value="2020-02-18" required="required" />
+            <input formControlName="date" type="date" value="2020-02-18" required="required" />
         </label>
         <p class="help-text">*required</p>
         </div>
         <div class="medium-12 cell">
         <label>Authors:
-            <select required="required">
+            <select formControlName="author" required="required">
             <option value="husker">Author 1</option>
             <option value="starbuck">Author 2</option>
             <option value="hotdog">Author 3</option>

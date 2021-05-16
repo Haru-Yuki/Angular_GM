@@ -1,11 +1,12 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../../core/models/course';
 import {CoursesService} from '../../services/courses/courses.service';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.scss']
+  styleUrls: ['./courses.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesComponent implements OnInit, DoCheck {
   courses: Array<Course> = [];

@@ -3,7 +3,7 @@
     (searchCourseValue)="handleSearch($event)"
   ></app-search>     
   <div class="showMore">
-    <a class="success button addCourseButton"><i class="fas fa-plus"></i>  Add Course</a>
+    <a [routerLink]="['./add']" class="success button addCourseButton"><i class="fas fa-plus"></i>  Add Course</a>
   </div>
   <div class="medium-12 cell post-wrapper">
     <app-course-post
