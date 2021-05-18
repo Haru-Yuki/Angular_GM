@@ -1,8 +1,7 @@
-import { Component, Output, Input, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../../core/models/course';
 import { FormBuilder, Validators } from '@angular/forms';
 import { rangeValidator } from '../../../core/validators/range.validator';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-course-form',
@@ -12,21 +11,7 @@ import { DatePipe } from '@angular/common';
 })
 
 export class CourseFormComponent {
-  id: number;
-  isExisted: boolean;
-
-  @Input() set course(course: Course) {
-    if (course && course.id) {
-      course.creationDate = this.datePipe.transform(course.creationDate, 'yyyy-MM-dd');
-
-      this.id = course.id;
-      this.isExisted = true;
-      this.form.patchValue(course);
-    }
-  }
-
   @Output() add: EventEmitter<Course> = new EventEmitter();
-  @Output() edit: EventEmitter<Course> = new EventEmitter();
 
   form = this.fb.group({
     title: ['', [ Validators.required, Validators.maxLength(50) ]],
@@ -49,8 +34,7 @@ export class CourseFormComponent {
   }
 
   constructor(
-    private fb: FormBuilder,
-    private datePipe: DatePipe
+    private fb: FormBuilder
   ) { }
 
   onAdd(): void {
