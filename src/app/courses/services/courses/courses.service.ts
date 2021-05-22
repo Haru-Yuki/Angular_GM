@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
+import { Router } from '@angular/router';
 import {Course} from '../../../core/models/course';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
-  constructor() {
+  constructor(private router: Router) {
     this._mockCoursesData();
   }
 
@@ -16,7 +17,7 @@ export class CoursesService {
   }
 
   addCourse(): void {
-    console.log('Adding course...');
+    this.router.navigate(['/courses']);
   }
 
   getCourse(id: number): Course {
@@ -24,7 +25,7 @@ export class CoursesService {
   }
 
   editCourse(id: number): void {
-    console.log('Editing course with id: ' + id);
+    this.router.navigate([`/courses/${id}`]);
   }
 
   // Courses will appear after page reload,

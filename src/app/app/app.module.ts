@@ -8,6 +8,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import {LoginModule} from '../login/login.module';
+import { Page404Component } from './components/page404/page404.component';
+import {CourseComponent} from '../courses/containers/course/course.component';
 
 
 @NgModule({
@@ -16,14 +18,15 @@ import {LoginModule} from '../login/login.module';
     HeaderComponent,
     FooterComponent,
     LogoComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    Page404Component
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         LoginModule
     ],
-  providers: [],
+  providers: [CourseComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

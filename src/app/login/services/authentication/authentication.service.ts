@@ -20,6 +20,8 @@ export class AuthenticationService {
     localStorage.removeItem('token');
 
     console.log('Logged out ' + localStorage.getItem('email'));
+
+    this.router.navigate(['login']);
   }
 
   isAuthenticated(): boolean {

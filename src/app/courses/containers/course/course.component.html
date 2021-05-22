@@ -1,5 +1,8 @@
 <div class="grid-x grid-padding-x">
     <div class="medium-12 cell">
-      <app-course-form></app-course-form>
+      <app-course-form
+      [course]="course"
+      (add)="onAdd()"
+      (edit)="onAdd()"></app-course-form>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { FilterPipe } from '../../pipes/filter/filter.pipe';
 import { OrderByPipe } from '../../pipes/order-by/order-by.pipe';
 
 import { CoursesComponent } from './courses.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 const courseMock = {
   id: 1,
@@ -18,6 +19,7 @@ describe('CoursesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ CoursesComponent, OrderByPipe, FilterPipe ]
     })
     .compileComponents();
