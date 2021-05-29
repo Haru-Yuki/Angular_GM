@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Course} from '../../../core/models/course';
 import {ActivatedRoute} from '@angular/router';
 import {CoursesService} from '../../services/courses/courses.service';
+import {AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'app-course',
@@ -22,7 +23,7 @@ export class CourseComponent implements OnInit {
     }
   }
 
-  onAdd(): void {
-    this.coursesService.addCourse();
+  onAdd(formValue: Course): void {
+    this.coursesService.addCourse(formValue);
   }
 }
