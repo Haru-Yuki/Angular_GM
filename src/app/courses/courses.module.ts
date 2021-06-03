@@ -7,6 +7,10 @@ import { CoursesRoutingModule } from './courses.routing-module';
 import { CoursePostComponent } from './components/course-post/course-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './containers/search/search.component';
+import { FreshPostDirective } from './directives/fresh-post/fresh-post.directive';
+import { TimePipe } from './pipes/time/time.pipe';
+import { OrderByPipe } from './pipes/order-by/order-by.pipe';
+import { FilterPipe } from './pipes/filter/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import { SearchComponent } from './containers/search/search.component';
     CourseComponent,
     CoursesComponent,
     CoursePostComponent,
-    SearchComponent
+    SearchComponent,
+    FreshPostDirective,
+    TimePipe,
+    OrderByPipe,
+    FilterPipe
   ],
   imports: [
     CommonModule,

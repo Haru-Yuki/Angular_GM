@@ -1,16 +1,19 @@
-<div class="grid-x grid-padding-x">
-  <app-search></app-search>     
-  <div class="medium-1 cell medium-offset-10 showMore">
+<div class="grid-x grid-padding-x courses-wrap">
+  <app-search
+    (searchCourseValue)="handleSearch($event)"
+  ></app-search>     
+  <div class="showMore">
     <a class="success button addCourseButton"><i class="fas fa-plus"></i>  Add Course</a>
   </div>
   <div class="medium-12 cell post-wrapper">
     <app-course-post
-      *ngFor="let course of courses;"
+      *ngFor="let course of courses | filter:'title':searchCourseValue | orderByDate ;"
       [course]="course"
       (deleted)="handleDelete($event)"
       (edited)="handleEdit($event)"
     ></app-course-post>
-    <div class="post">
+    <div *ngIf="!isCourseFind" class="post-noCourses">Courses not found</div>
+    <div *ngIf="isCourseFind" class="post">
       <div class="post-loadMore-wrapper">
         <a class="post-loadMore" (click)="handleLoadMore()">Load more</a>
       </div>
