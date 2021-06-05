@@ -1,8 +1,9 @@
 <div class="grid-x grid-padding-x courses-wrap">
   <app-search
-    (searchCourseValue)="handleSearch($event)"
+    (search)="handleSearch($event)"
     (reload)="handleReload()"
   ></app-search>
+  <span class="post-count">Loaded {{count}}/{{countOfCourses}} courses</span>
   <div class="showMore">
     <a [routerLink]="['./new']" class="success button addCourseButton"><i class="fas fa-plus"></i>  Add Course</a>
   </div>
@@ -13,6 +14,7 @@
       (deleted)="handleDelete($event)"
       (edited)="handleEdit($event)"
     ></app-course-post>
+    <div class="post-count">Loaded {{count}}/{{countOfCourses}} courses</div>
     <div *ngIf="!isCourseFind" class="post-noCourses">Courses not found</div>
     <div *ngIf="isCourseFind && !isSearched" class="post">
       <div class="post-loadMore-wrapper">
