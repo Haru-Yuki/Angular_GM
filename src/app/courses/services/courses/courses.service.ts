@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import { Router } from '@angular/router';
 import {debounceTime, distinctUntilChanged, switchMap, take, tap} from 'rxjs/operators';
 import {Course} from '../../../core/models/course';
+import {Author} from '../../../core/models/author';
 import {Form, FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {CoursesApiService} from '../../../core/services/services-api/courses-api/courses-api.service';
@@ -56,5 +57,9 @@ export class CoursesService {
       take(1),
       tap(data => this.countOfCourses = data.length)
     ).subscribe();
+  }
+
+  getAllAuthors(): Observable<Array<Author>> {
+    return this.coursesAPIService.getAllAuthors();
   }
 }
