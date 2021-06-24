@@ -1,74 +1,67 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../../core/models/course';
+import {CoursesService} from '../../services/courses/courses.service';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+
+const DEFAULT_COUNT = 5;
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.scss']
+  styleUrls: ['./courses.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesComponent implements OnInit, DoCheck {
-  courses: Array<Course> = [];
-  searchCourseValue: string;
-  isCourseFind: boolean;
-  isCourseFindSearch = true;
 
-  constructor() {}
+export class CoursesComponent implements OnInit {
+  count = DEFAULT_COUNT;
+  coursesAsArray: Array<Course>;
+  courses: Observable<Array<Course>>;
+  isCourseFind: boolean;
+  isSearched: boolean;
+
+  constructor(private coursesService: CoursesService) { }
 
   ngOnInit(): void {
-    this.mockCoursesData();
-  }
+    this.setCoursesAsArray();
 
-  ngDoCheck(): void {
-    this.isCourseFind = !(this.courses && this.courses.length === 0 || !this.isCourseFindSearch);
-  }
-
-  mockCoursesData(): void {
-    // Upcoming courses example
-    for (let i = 0; i < 3; i++) {
-      this.courses.push({
-        id: i,
-        title: 'Video Course ' + i,
-        creationDate: '08/28/2021',
-        duration: 88,
-        description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
-      });
-    }
-
-    // Fresh course example
-    this.courses.push({
-      id: 3,
-      title: 'Video Course ' + 3,
-      creationDate: '04/28/2021',
-      duration: 52,
-      description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
-    });
-
-    // Top Rated course example
-    this.courses.push({
-      id: 4,
-      topRated: true,
-      title: 'Video Course ' + 4,
-      creationDate: '07/16/2020',
-      duration: 20,
-      description: 'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.'
-    });
+    this.courses = this.coursesService.getCoursesLoadMore(DEFAULT_COUNT);
   }
 
   handleDelete(id: number): void {
-    console.log('Deleting course with id: ' + id);
+    if (confirm('Do you want to delete course?')) {
+      this.coursesService.deleteCourse(id);
+    }
   }
 
   handleEdit(id: number): void {
-    console.log('Editing course with id: ' + id);
+      this.coursesService.editCourse(id);
   }
 
   handleLoadMore(): void {
-    console.log('Loading more courses...');
+    this.courses = this.coursesService.getCoursesLoadMore(this.count += 5);
   }
 
   handleSearch(value: string): void {
-    this.searchCourseValue = value;
+    if (value) {
+      this.setCoursesAsArray(value);
+      this.courses = this.coursesService.searchCourses(value);
+      this.isSearched = true;
+    }
+  }
 
-    this.isCourseFindSearch = this.courses.filter(courses => courses.title.includes(value)).length !== 0;
+  handleReload(): void {
+    window.location.reload();
+  }
+
+  private setCoursesAsArray(searchValue?: string): void {
+    this.coursesService.getCoursesAsArray(searchValue || null).pipe(
+      tap((data) => this.coursesAsArray = data),
+      tap(() => this.setIsCourseFind())
+    ).subscribe();
+  }
+
+  private setIsCourseFind(): void {
+    this.isCourseFind = !(this.coursesAsArray && this.coursesAsArray.length === 0);
   }
 }

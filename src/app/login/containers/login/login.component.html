@@ -1,0 +1,20 @@
+<div class="login-wrapper">
+  <form class="login-form" [formGroup]="form">
+    <h3 class="login-header">Login</h3>
+    <div class="medium-12 cell">
+      <label>E-mail:
+        <input formControlName="email" type="email" placeholder="Enter e-mail" required="required" />
+      </label>
+      <p class="login-help-text help-text">*required</p>
+
+      <label>Password:
+        <input formControlName="password" type="password" placeholder="Enter password" required="required" />
+      </label>
+      <p class="login-help-text help-text">*required</p>
+    </div>
+
+    <input (click)="handleLogin()" class="login-button button" type="submit" value="Login" [disabled]="form.invalid">
+  </form>
+
+  <a class="login-link">Forgot password?</a>
+</div>
