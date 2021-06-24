@@ -5,6 +5,9 @@ export interface Course {
     creationDate: string;
     duration: number;
     description: string;
-    author?: string;
+    authors: {
+      id: number;
+      name: string;
+    };
     date?: string;
 }
