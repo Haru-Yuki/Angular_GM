@@ -1,27 +1,31 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../../core/models/course';
 import {CoursesService} from '../../services/courses/courses.service';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+
+const DEFAULT_COUNT = 5;
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.scss']
+  styleUrls: ['./courses.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesComponent implements OnInit, DoCheck {
-  courses: Array<Course> = [];
-  searchCourseValue: string;
-  isCourseFind: boolean;
-  isCourseFindSearch = true;
 
-  constructor(private coursesService: CoursesService) {}
+export class CoursesComponent implements OnInit {
+  count = DEFAULT_COUNT;
+  coursesAsArray: Array<Course>;
+  courses: Observable<Array<Course>>;
+  isCourseFind: boolean;
+  isSearched: boolean;
+
+  constructor(private coursesService: CoursesService) { }
 
   ngOnInit(): void {
-    this.courses = this.coursesService.getCourses();
-  }
+    this.setCoursesAsArray();
 
-  ngDoCheck(): void {
-    this.courses = this.coursesService.getCourses();
-    this.isCourseFind = !(this.courses && this.courses.length === 0 || !this.isCourseFindSearch);
+    this.courses = this.coursesService.getCoursesLoadMore(DEFAULT_COUNT);
   }
 
   handleDelete(id: number): void {
@@ -35,12 +39,29 @@ export class CoursesComponent implements OnInit, DoCheck {
   }
 
   handleLoadMore(): void {
-    console.log('Loading more courses...');
+    this.courses = this.coursesService.getCoursesLoadMore(this.count += 5);
   }
 
   handleSearch(value: string): void {
-    this.searchCourseValue = value;
+    if (value) {
+      this.setCoursesAsArray(value);
+      this.courses = this.coursesService.searchCourses(value);
+      this.isSearched = true;
+    }
+  }
 
-    this.isCourseFindSearch = this.courses.filter(courses => courses.title.includes(value)).length !== 0;
+  handleReload(): void {
+    window.location.reload();
+  }
+
+  private setCoursesAsArray(searchValue?: string): void {
+    this.coursesService.getCoursesAsArray(searchValue || null).pipe(
+      tap((data) => this.coursesAsArray = data),
+      tap(() => this.setIsCourseFind())
+    ).subscribe();
+  }
+
+  private setIsCourseFind(): void {
+    this.isCourseFind = !(this.coursesAsArray && this.coursesAsArray.length === 0);
   }
 }

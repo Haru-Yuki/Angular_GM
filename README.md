@@ -16,7 +16,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Hooks do not work? ng build showing errors?
 
-Run `npm update` or `rm -rf node_modules/` and then `npm install`\
+Run `npm update` or `rm -rf node_modules/` and then `npm install`
 
 ## CSS Framework
 

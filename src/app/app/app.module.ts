@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './containers/app/app.component';
@@ -8,6 +8,10 @@ import { LogoComponent } from './components/logo/logo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import {LoginModule} from '../login/login.module';
+import { Page404Component } from './components/page404/page404.component';
+import {CourseComponent} from '../courses/containers/course/course.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {TokenInterceptor} from '../core/interceptors/token.interceptor/token.interceptor';
 
 
 @NgModule({
@@ -16,14 +20,23 @@ import {LoginModule} from '../login/login.module';
     HeaderComponent,
     FooterComponent,
     LogoComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    Page404Component
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        LoginModule
+        LoginModule,
+        HttpClientModule
     ],
-  providers: [],
+  providers: [
+    CourseComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,19 +9,20 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit, DoCheck {
   isAuthenticated: boolean;
-  loggedInEmail: string;
+  userInfo: string;
 
   constructor(private authenticationService: AuthenticationService,
               public router: Router) { }
 
   ngOnInit(): void {
+    this.authenticationService.setUserInfo();
     this.isAuthenticated = this.authenticationService.isAuthenticated();
-    this.loggedInEmail = this.authenticationService.getUserInfo();
   }
 
   ngDoCheck(): void {
     this.isAuthenticated = this.authenticationService.isAuthenticated();
-    this.loggedInEmail = this.authenticationService.getUserInfo();
+
+    this.userInfo = this.authenticationService.userInfo;
   }
 
   handleLogout(): void {
