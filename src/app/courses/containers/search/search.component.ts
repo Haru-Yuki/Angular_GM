@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {CoursesService} from '../../services/courses/courses.service';
 
 @Component({
   selector: 'app-search',
@@ -9,6 +10,7 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   @Output() searchCourseValue: EventEmitter<string> = new EventEmitter();
+  @Output() reload: EventEmitter<boolean> = new EventEmitter();
 
   searchControl: FormControl;
 
@@ -20,5 +22,9 @@ export class SearchComponent implements OnInit {
 
   handleSearch(): void {
     this.searchCourseValue.emit(this.searchControl.value || '');
+  }
+
+  handleReload(): void {
+    this.reload.emit(true);
   }
 }

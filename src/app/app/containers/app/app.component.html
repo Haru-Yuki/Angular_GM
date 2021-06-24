@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-breadcrumbs *ngIf="router.url === '/courses'"></app-breadcrumbs>
+<app-breadcrumbs *ngIf="router.url.includes('/courses')"></app-breadcrumbs>
 <main class="main">
     <router-outlet></router-outlet>
 </main>

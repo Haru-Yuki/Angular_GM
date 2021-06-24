@@ -1,3 +1,3 @@
 <div class="breadcrumbs-wrapper">
-  <p class="breadcrumbs-title">Courses</p>
+  <a href="/courses" class="breadcrumbs-title">Courses</a><span *ngIf="router.url !== '/courses'" class="breadcrumbs-title breadcrumbs-title_text">/Video Course {{id}}</span>
 </div>

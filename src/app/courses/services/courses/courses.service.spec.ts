@@ -1,15 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CoursesService } from './courses.service';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Router} from '@angular/router';
 
-describe('CoursesService', () => {
+xdescribe('CoursesService', () => {
   let service: CoursesService;
+  let router: Router;
 
   beforeEach(() => {
-    spyOn(console, 'log');
-
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ]
+    });
+    router = TestBed.inject(Router);
     service = TestBed.inject(CoursesService);
+
+    spyOn(router, 'navigate');
   });
 
   it('should be created', () => {
@@ -17,10 +25,10 @@ describe('CoursesService', () => {
   });
 
   describe('addCourse', () => {
-    it('should show console log', () => {
-      service.addCourse();
+    xit('should navigate to courses', () => {
+      // service.addCourse();
 
-      expect(console.log).toHaveBeenCalledWith('Adding course...');
+      expect(router.navigate).toHaveBeenCalledWith(['/courses']);
     });
   });
 
@@ -35,10 +43,10 @@ describe('CoursesService', () => {
   describe('editCourse', () => {
     const id = 1;
 
-    it('should show console log with id', () => {
+    it('should navigate to courses with id', () => {
       service.editCourse(id);
 
-      expect(console.log).toHaveBeenCalledWith('Editing course with id: ' + id);
+      expect(router.navigate).toHaveBeenCalledWith([`/courses/${id}`]);
     });
   });
 
