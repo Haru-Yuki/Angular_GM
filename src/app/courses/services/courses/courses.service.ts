@@ -25,22 +25,20 @@ export class CoursesService {
     return this.coursesAPIService.getCoursesLoadMore(count);
   }
 
-  addCourse(formValue: Course): void {
-    this.coursesAPIService.addCourse(formValue);
-    this.router.navigate(['/courses']);
+  addCourse(formValue: Course): Observable<object> {
+    return this.coursesAPIService.addCourse(formValue);
   }
 
-  getCourse(id: number): Course {
-    return this.courses.find(course => course.id === id);
+  getCourseById(id: number): Observable<Course> {
+    return this.coursesAPIService.getCourseById(id);
   }
 
-  editCourse(id: number): void {
-    this.router.navigate([`/courses/${id}`]);
+  editCourse(formValue: Course, id: number): Observable<object> {
+    return this.coursesAPIService.editCourse(formValue, id);
   }
 
-  deleteCourse(id: number): void {
-    this.coursesAPIService.deleteCourse(id);
-    this.getCoursesLoadMore(5);
+  deleteCourse(id: number): Observable<object> {
+    return this.coursesAPIService.deleteCourse(id);
   }
 
   searchCourses(searchValue: string): Observable<Array<Course>> {

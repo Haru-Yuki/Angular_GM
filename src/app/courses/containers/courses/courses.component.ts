@@ -1,9 +1,10 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 import {Course} from '../../../core/models/course';
 import {CoursesService} from '../../services/courses/courses.service';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap, take, tap} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
+import {Router} from '@angular/router';
 
 const DEFAULT_COUNT = 5;
 
@@ -23,31 +24,29 @@ export class CoursesComponent implements OnInit {
   courses: Observable<Array<Course>> = this.coursesSubject.asObservable();
   countOfCourses: number;
 
-  constructor(private coursesService: CoursesService) {
+  @Output() course: EventEmitter<Course> = new EventEmitter();
+
+  constructor(private coursesService: CoursesService,
+              private router: Router) {
     this.isCourseFind = true;
     this.isSearched = true;
     this.coursesService.setCountOfCourses();
   }
 
   ngOnInit(): void {
-    this.coursesService.getCoursesAsArray().pipe(
-      take(1),
-      tap((data) => {
-        this.coursesAsArray = data;
-        this.isCourseFind = !!data.length;
-      }),
-      tap(() => this.setInitialCourses())
-    ).subscribe();
+    this.initCourses();
   }
 
   handleDelete(id: number): void {
     if (confirm('Do you want to delete course?')) {
-      this.coursesService.deleteCourse(id);
+      this.coursesService.deleteCourse(id).subscribe(
+        () => this.initCourses()
+      );
     }
   }
 
   handleEdit(id: number): void {
-      this.coursesService.editCourse(id);
+    this.router.navigate([`/courses/${id}`]);
   }
 
   handleLoadMore(): void {
@@ -105,6 +104,17 @@ export class CoursesComponent implements OnInit {
       take(1),
       tap((data) => this.coursesSubject.next(data)),
       tap(() => this.countOfCourses = this.coursesService.countOfCourses)
+    ).subscribe();
+  }
+
+  private initCourses(): void {
+    this.coursesService.getCoursesAsArray().pipe(
+      take(1),
+      tap((data) => {
+        this.coursesAsArray = data;
+        this.isCourseFind = !!data.length;
+      }),
+      tap(() => this.setInitialCourses())
     ).subscribe();
   }
 }

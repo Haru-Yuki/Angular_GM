@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Course} from '../../../models/course';
 import {HttpClient} from '@angular/common/http';
+import {concatMap} from 'rxjs/operators';
 
 const BASE_URL = 'http://localhost:3004';
 
@@ -21,16 +22,20 @@ export class CoursesApiService {
     return this.httpClient.get<Array<Course>>(`${BASE_URL}/courses?start=0&count=${count}&sort=date`);
   }
 
-  deleteCourse(id: number): void {
-    this.httpClient.delete(`${BASE_URL}/courses/${id}`);
+  getCourseById(id: number): Observable<Course> {
+    return this.httpClient.get<Course>(`${BASE_URL}/courses/${id}`);
   }
 
-  addCourse(formValue: Course): void {
-    this.httpClient.post(`${BASE_URL}/courses`, {formValue});
+  deleteCourse(id: number): Observable<object> {
+    return this.httpClient.delete(`${BASE_URL}/courses/${id}`);
   }
 
-  editCourse(formValue: Course, id): void {
-    this.httpClient.patch(`${BASE_URL}/courses/${id}`, {formValue});
+  addCourse(formValue: Course): Observable<object> {
+    return this.httpClient.post(`${BASE_URL}/courses`, {...formValue});
+  }
+
+  editCourse(formValue: Course, id): Observable<object> {
+    return this.httpClient.patch(`${BASE_URL}/courses/${id}`, {...formValue});
   }
 
   searchCourses(searchValue: string): Observable<Array<Course>> {
