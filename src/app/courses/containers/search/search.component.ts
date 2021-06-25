@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {ChangeDetectionStrategy, Component, DoCheck, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {CoursesService} from '../../services/courses/courses.service';
 
 @Component({
   selector: 'app-search',
@@ -8,8 +7,8 @@ import {CoursesService} from '../../services/courses/courses.service';
   styleUrls: ['./search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchComponent implements OnInit {
-  @Output() searchCourseValue: EventEmitter<string> = new EventEmitter();
+export class SearchComponent implements OnInit, DoCheck {
+  @Output() search: EventEmitter<FormControl> = new EventEmitter();
   @Output() reload: EventEmitter<boolean> = new EventEmitter();
 
   searchControl: FormControl;
@@ -20,8 +19,8 @@ export class SearchComponent implements OnInit {
     this.searchControl = new FormControl();
   }
 
-  handleSearch(): void {
-    this.searchCourseValue.emit(this.searchControl.value || '');
+  ngDoCheck(): void {
+    this.search.emit(this.searchControl);
   }
 
   handleReload(): void {

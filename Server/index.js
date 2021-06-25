@@ -12,17 +12,19 @@ walk('./services', function (err, results) {
 		console.log(err);
 	} else {
 		ang = init(results);
-		
+    server.use(function(req, res, next){
+      setTimeout(next, 300);
+    });
 		server.use(cors);
-		
+
 		server.use(jsonServer.bodyParser);
 		server.use(middleware);
-		
+
 		//
 		server.use(ang.routes);
 		server.use(ang.middleware);
 		server.use(ang.db);
-		
+
 		server.listen(3004, function () {
 			console.log('JSON Server is running on 3004');
 		});
