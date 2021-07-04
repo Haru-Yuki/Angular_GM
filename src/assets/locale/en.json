@@ -1,0 +1,31 @@
+{
+    "NAV": {
+        "TITLE": "Video Course",
+        "WELCOME": "Welcome",
+        "LOG_IN": "Log in",
+        "LOG_OUT": "Log out"
+    },
+    "BREADCRUMBS": {
+        "BASE": "Courses"
+    },
+    "MAIN": {
+        "RELOAD_BTN": "Reload",
+        "SEARCH_PLACEHOLDER": "Text for search",
+        "LOADED": "Loaded",
+        "COURSES": "courses",
+        "ADD_COURSE_BTN": "Add Course",
+        "LOAD_MORE_BTN": "Load More"
+    },
+    "COURSE": {
+        "DURATION_HOURS": "h",
+        "DURATION_MIN": "min",
+        "EDIT": "Edit",
+        "DELETE": "Delete"
+    },
+    "FOOTER": {
+        "COPYRIGHT": "All right reserved"
+    },
+    "PAGE_404": {
+        "NOT_FOUND": "Error 404: Page not Found!"
+    }
+}

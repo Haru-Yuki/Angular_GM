@@ -11,6 +11,13 @@ import { FreshPostDirective } from './directives/fresh-post/fresh-post.directive
 import { TimePipe } from './pipes/time/time.pipe';
 import { OrderByPipe } from './pipes/order-by/order-by.pipe';
 import { FilterPipe } from './pipes/filter/filter.pipe';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/locale/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +34,15 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
   imports: [
     CommonModule,
     CoursesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      useDefaultLang: false,
+    })
   ],
   providers: [
     DatePipe

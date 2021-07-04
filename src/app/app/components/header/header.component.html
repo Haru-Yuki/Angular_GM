@@ -2,19 +2,22 @@
     <header class="cell header">
         <app-logo></app-logo>
         <div class="header-title">
-          <a href="./" style="color: #FFFFFF">Video course</a>
+          <a href="./" style="color: #FFFFFF">{{'NAV.TITLE' | translate}}</a>
         </div>
+        <select class="header-lang" #langSelect (change)="translate.use(langSelect.value)">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        </select>
         <nav class="header-navigation">
             <ul class="header-navigation-items">
                 <li *appAuthenticated="isAuthenticated" class="header-navigation-item">
-                    <a *ngIf="router.url !== '/login'" href="/login" routerLinkActive="header-navigation-item-link--active" class="header-navigation-item-link">User login</a>
+                    <a *ngIf="router.url !== '/login'" href="/login" routerLinkActive="header-navigation-item-link--active" class="header-navigation-item-link">{{'NAV.LOG_IN' | translate}}</a>
                 </li>
                 <li *appAuthenticated="!isAuthenticated" class="header-navigation-item">
-                  <span class="header-navigation-item-user">Welcome,</span>
+                  <span class="header-navigation-item-user">{{'NAV.WELCOME' | translate}},</span>
                   <span class="header-navigation-item-user">{{userInfo}}</span>
                 </li>
                 <li *appAuthenticated="!isAuthenticated" class="header-navigation-item">
-                    <a (click)="handleLogout()" routerLinkActive="header-navigation-item-link--active" class="header-navigation-item-link">Log out</a>
+                    <a (click)="handleLogout()" routerLinkActive="header-navigation-item-link--active" class="header-navigation-item-link">{{'NAV.LOG_OUT' | translate}}</a>
                 </li>
             </ul>
         </nav>

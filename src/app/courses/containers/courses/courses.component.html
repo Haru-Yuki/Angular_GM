@@ -3,7 +3,7 @@
     (search)="handleSearch($event)"
     (reload)="handleReload()"
   ></app-search>
-  <span class="post-count">Loaded {{count}}/{{countOfCourses}} courses</span>
+  <span class="post-count">{{'MAIN.LOADED' | translate}} {{count}}/{{countOfCourses}} {{'MAIN.COURSES' | translate}}</span>
   <div class="showMore">
     <a [routerLink]="['./new']" class="success button addCourseButton"><i class="fas fa-plus"></i>  Add Course</a>
   </div>

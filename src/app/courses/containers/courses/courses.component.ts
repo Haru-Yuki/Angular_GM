@@ -4,6 +4,8 @@ import {CoursesService} from '../../services/courses/courses.service';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap, take, tap} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 const DEFAULT_COUNT = 5;
 
@@ -23,13 +25,16 @@ export class CoursesComponent implements OnInit {
   courses: Observable<Array<Course>> = this.coursesSubject.asObservable();
   countOfCourses: number;
 
-  constructor(private coursesService: CoursesService) {
+  constructor(private coursesService: CoursesService,
+              private translateService: TranslateService) {
     this.isCourseFind = true;
     this.isSearched = true;
     this.coursesService.setCountOfCourses();
   }
 
   ngOnInit(): void {
+    this.translateService.use(environment.defaultLocale);
+
     this.coursesService.getCoursesAsArray().pipe(
       take(1),
       tap((data) => {
