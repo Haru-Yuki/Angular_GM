@@ -24,6 +24,8 @@
     "@angular/platform-browser-dynamic": "^11.2.10",
     "@angular/router": "^11.2.10",
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@ngrx/store": "^12.2.0",
+    "@ngrx/store-devtools": "^12.2.0",
     "foundation-sites": "^6.6.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
