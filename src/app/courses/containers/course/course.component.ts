@@ -2,7 +2,6 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Course} from '../../../core/models/course';
 import {ActivatedRoute} from '@angular/router';
 import {CoursesService} from '../../services/courses/courses.service';
-import {AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'app-course',

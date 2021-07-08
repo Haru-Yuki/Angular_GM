@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Course} from '../../../models/course';
+import {Author} from '../../../models/author';
 import {HttpClient} from '@angular/common/http';
 
 const BASE_URL = 'http://localhost:3004';
@@ -35,5 +36,9 @@ export class CoursesApiService {
 
   searchCourses(searchValue: string): Observable<Array<Course>> {
     return this.httpClient.get<Array<Course>>(`${BASE_URL}/courses?sort=date&textFragment=${searchValue}`);
+  }
+
+  getAllAuthors(): Observable<Array<Author>> {
+    return this.httpClient.get<Array<Author>>(`${BASE_URL}/authors`);
   }
 }

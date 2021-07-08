@@ -1,8 +1,8 @@
 import {Component, Output, EventEmitter, ChangeDetectionStrategy, Input} from '@angular/core';
-import { Course } from '../../../core/models/course';
-import { FormBuilder, Validators } from '@angular/forms';
-import { rangeValidator } from '../../../core/validators/range.validator';
+import {Course} from '../../../core/models/course';
+import {FormBuilder, Validators} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import {CoursesService} from '../../services/courses/courses.service';
 
 @Component({
   selector: 'app-course-form',
@@ -14,6 +14,7 @@ import {DatePipe} from '@angular/common';
 export class CourseFormComponent {
   id: number;
   isExisted: boolean;
+  authors = this.coursesService.getAllAuthors();
 
   @Input() set course(course: Course) {
     if (course && course.id !== null) {
@@ -31,13 +32,13 @@ export class CourseFormComponent {
   form = this.fb.group({
     title: ['', [ Validators.required, Validators.maxLength(50) ]],
     description: ['', [ Validators.required, Validators.maxLength(500) ]],
-    duration: ['', [ Validators.required, rangeValidator(1, 600) ]],
+    duration: ['', [ Validators.required, Validators.pattern('^[0-9]*$') ]],
     date: ['', Validators.required],
-    author: ['']
+    author: ['', Validators.required]
   });
 
   get isDurationRangeValid(): boolean {
-    return this.form.get('duration').hasError('range') && this.form.get('duration').dirty;
+    return this.form.get('duration').hasError('pattern') && this.form.get('duration').dirty;
   }
 
   get isTitleLengthValid(): boolean {
@@ -50,7 +51,8 @@ export class CourseFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private coursesService: CoursesService
   ) { }
 
   onAdd(): void {
