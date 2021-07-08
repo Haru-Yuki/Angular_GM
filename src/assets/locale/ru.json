@@ -1,0 +1,31 @@
+{
+    "NAV": {
+        "TITLE": "Видео Курсы",
+        "WELCOME": "Приветствую",
+        "LOG_IN": "Войти",
+        "LOG_OUT": "Выйти"
+    },
+    "BREADCRUMBS": {
+        "BASE": "Курсы"
+    },
+    "MAIN": {
+        "RELOAD_BTN": "Перезагрузить",
+        "SEARCH_PLACEHOLDER": "Текст для поиска",
+        "LOADED": "Загружено",
+        "COURSES": "курсов",
+        "ADD_COURSE_BTN": "Добавить курс",
+        "LOAD_MORE_BTN": "Загрузить ещё"
+    },
+    "COURSE": {
+        "DURATION_HOURS": "ч",
+        "DURATION_MIN": "мин",
+        "EDIT": "Редактировать",
+        "DELETE": "Удалить"
+    },
+    "FOOTER": {
+        "COPYRIGHT": "Все права защищены"
+    },
+    "PAGE_404": {
+        "NOT_FOUND": "Ошибка 404: Страница не Найдена!"
+    }
+}

@@ -1,6 +1,8 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../../login/services/authentication/authentication.service';
 import {Router} from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +14,13 @@ export class HeaderComponent implements OnInit, DoCheck {
   userInfo: string;
 
   constructor(private authenticationService: AuthenticationService,
-              public router: Router) { }
+              public router: Router,
+              public translate: TranslateService) { }
 
   ngOnInit(): void {
+    this.translate.addLangs(environment.locales);
+    this.translate.setDefaultLang(environment.defaultLocale);
+
     this.authenticationService.setUserInfo();
     this.isAuthenticated = this.authenticationService.isAuthenticated();
   }

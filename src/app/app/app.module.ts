@@ -10,9 +10,19 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import {LoginModule} from '../login/login.module';
 import { Page404Component } from './components/page404/page404.component';
 import {CourseComponent} from '../courses/containers/course/course.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from '@angular/common/http';
 import {TokenInterceptor} from '../core/interceptors/token.interceptor/token.interceptor';
+import { LoaderComponent } from './components/loader/loader/loader.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {LoaderService} from './services/loader.service';
+import {LoaderInterceptor} from './interceptors/loader.interceptor';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/locale/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -21,15 +31,32 @@ import {TokenInterceptor} from '../core/interceptors/token.interceptor/token.int
     FooterComponent,
     LogoComponent,
     BreadcrumbsComponent,
-    Page404Component
+    Page404Component,
+    LoaderComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        LoginModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LoginModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      useDefaultLang: false,
+    })
+  ],
   providers: [
+    LoaderService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
     CourseComponent,
     {
       provide: HTTP_INTERCEPTORS,

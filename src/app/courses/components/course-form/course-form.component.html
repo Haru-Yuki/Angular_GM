@@ -14,15 +14,15 @@
             Description:
             <textarea formControlName="description" placeholder="Description..." required="required"></textarea>
             <span *ngIf="isDescriptionLengthValid" class="error"><i class="fas fa-exclamation-triangle"></i>Description is out of max length! (Maximum 50)</span>
-            <span class="postAdd-validationInfo">Symbols used: {{ this.form.get('description').value.length }} / 50</span>
+            <span class="postAdd-validationInfo">Symbols used: {{ this.form.get('description').value.length }} / 500</span>
         </label>
         <p class="help-text">*required</p>
         </div>
         <div class="medium-2 cell">
         <label>
             Duration:
-            <input formControlName="duration" type="number" value="0" min="1" max="600" required="required" />
-            <span *ngIf="isDurationRangeValid" class="error"><i class="fas fa-exclamation-triangle"></i>Duration is out of range! (1-600)</span>
+            <input formControlName="duration" type="text" value="0" required="required" />
+            <span *ngIf="isDurationRangeValid" class="error"><i class="fas fa-exclamation-triangle"></i>Please, input only numbers!</span>
         </label>
         <p class="help-text">*required</p>
 
@@ -35,11 +35,10 @@
         <div class="medium-12 cell">
         <label>Authors:
             <select formControlName="author">
-            <option value="auth1">Author 1</option>
-            <option value="auth2">Author 2</option>
-            <option value="auth3">Author 3</option>
+              <option *ngFor="let author of authors | async" value="author">{{author.name}}</option>
             </select>
         </label>
+        <p class="help-text">*required</p>
         </div>
     </div>
     <div class="medium-2 cell">
